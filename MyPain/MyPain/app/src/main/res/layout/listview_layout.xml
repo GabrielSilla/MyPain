@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txt_title"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    android:checkMarkTint="@android:color/holo_blue_light"
+    android:gravity="center_vertical"
+    android:padding="5sp"
+    android:text="Injurie"
+    android:textColorLink="@android:color/holo_blue_dark" />
