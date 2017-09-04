@@ -1,15 +1,19 @@
 package com.example.gabriel.mypain;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -39,26 +43,24 @@ public class InjuriesList extends AppCompatActivity {
 
         injuriesList.setAdapter(adapter);
 
-        /*injuriesList.setOnItemClickListener(new UsersAdapter().OnItemClickListener() {
+        injuriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getBaseContext(), "Clicked", Toast.LENGTH_SHORT).show();
-                /*TextView item = (TextView) view.findViewById(R.id.rowTextView);
-                CheckBox checkBox = (CheckBox) view.findViewById(R.id.editCheckbox);
+                TextView item = (TextView) view.findViewById(R.id.txt_title);
 
                 String selectedInjurie = item.getText().toString();
 
-                if(!selectedInjuries.contains(selectedInjurie)){
-                    selectedInjuries.add(selectedInjurie);
-                    checkBox.setChecked(true);
-                    Toast.makeText(getBaseContext(), selectedInjurie + " - Selecionado", Toast.LENGTH_SHORT).show();
+                if(selectedInjurie.equals("Dor")){
+                    Intent intent = new Intent(getBaseContext(), Body_full.class);
+                    startActivity(intent);
+                }else{
+                    if(!selectedInjuries.contains(selectedInjurie)){
+                        selectedInjuries.add(selectedInjurie);
+                    }
+                    else{
+                        selectedInjuries.remove(selectedInjurie);
+                    }
                 }
-                else{
-                    checkBox.setChecked(false);
-                    selectedInjuries.remove(selectedInjurie);
-                    Toast.makeText(getBaseContext(), selectedInjurie + " - Deselecionado", Toast.LENGTH_SHORT).show();
-                }
-
             }
         });
 
@@ -70,6 +72,5 @@ public class InjuriesList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        */
     }
 }
