@@ -28,7 +28,8 @@
         <activity
             android:name=".Body_full"
             android:label="@string/title_activity_body_full"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BodyPartsView.HeadView"></activity>
     </application>
 
 </manifest>
