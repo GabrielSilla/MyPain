@@ -65,7 +65,7 @@ public class HeadView extends AppCompatActivity {
         btn_lf_eye.setLayoutParams(params3);
 
         Button btn_rh_eye = (Button) findViewById(R.id.button_right_eye);
-        ViewGroup.LayoutParams params4 = btn_rh_eye.getLayoutParams();asdasd
+        ViewGroup.LayoutParams params4 = btn_rh_eye.getLayoutParams();
         params4.width = screenWidth / 9;
         params4.height = screenHeight / 15;
 
@@ -77,6 +77,20 @@ public class HeadView extends AppCompatActivity {
         params5.height = screenHeight / 7;
 
         btn_nose.setLayoutParams(params5);
+
+        Button btn_mouth = (Button) findViewById(R.id.button_mouth);
+        ViewGroup.LayoutParams params6 = btn_mouth.getLayoutParams();
+        params6.width = screenWidth / 9;
+        params6.height = screenHeight / 15;
+
+        btn_mouth.setLayoutParams(params6);
+
+        Button btn_neck = (Button) findViewById(R.id.button_neck);
+        ViewGroup.LayoutParams params7 = btn_nose.getLayoutParams();
+        params7.width = screenWidth / 10;
+        params7.height = screenHeight / 7;
+
+        btn_nose.setLayoutParams(params7);
 
     }
 }

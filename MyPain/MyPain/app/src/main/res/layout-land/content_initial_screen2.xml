@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/floatingActionButton"
+                android:id="@+id/btnRegisterPatient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -65,7 +65,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
+                app:layout_constraintTop_toBottomOf="@+id/btnRegisterPatient"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@mipmap/ic_search_patient" />
 
@@ -185,11 +185,11 @@
                 android:layout_marginTop="8dp"
                 android:text="Buscar diagnosticos"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
+                app:layout_constraintBottom_toBottomOf="@+id/btnRegisterPatient"
                 app:layout_constraintHorizontal_bias="0.087"
-                app:layout_constraintLeft_toRightOf="@+id/floatingActionButton"
+                app:layout_constraintLeft_toRightOf="@+id/btnRegisterPatient"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/floatingActionButton"
+                app:layout_constraintTop_toTopOf="@+id/btnRegisterPatient"
                 app:layout_constraintVertical_bias="1.0" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

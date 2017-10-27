@@ -1,5 +1,6 @@
 package Controllers;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,5 +31,26 @@ public class DatabaseController {
         }
         db.close();
         return cursor;
+    }
+
+
+    public String registerPacienteIntoDB(String name, String cpf){
+        ContentValues values;
+        long result;
+
+        db = database.getWritableDatabase();
+        values = new ContentValues();
+        values.put(CreateDB.PATIENT_NAME, name);
+        values.put(CreateDB.PATIENT_CPF, cpf);
+
+        result = db.insert(CreateDB.TABLE_PATIENT, null, values);
+        db.close();
+
+        if(result ==-1){
+            return "Erro ao tentar inserir registro";
+        }
+        else{
+            return "Registro Inserido com sucesso";
+        }
     }
 }

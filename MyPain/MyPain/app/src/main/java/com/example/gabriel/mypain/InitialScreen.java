@@ -37,6 +37,7 @@ public class InitialScreen extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        FloatingActionButton registerPatient = (FloatingActionButton) this.findViewById(R.id.btnRegisterPatient);
         FloatingActionButton fabNewDiag = (FloatingActionButton) this.findViewById(R.id.new_diag);
         fabNewDiag.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -44,6 +45,13 @@ public class InitialScreen extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        registerPatient.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(v.getContext(), PatientRegister.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

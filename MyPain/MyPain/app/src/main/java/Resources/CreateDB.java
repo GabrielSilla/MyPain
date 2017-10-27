@@ -22,6 +22,7 @@ public class CreateDB extends SQLiteOpenHelper{
     public static final String TITLE = "InjurieName";
 
     public static final String TABLE_PATIENT = "Patient";
+    public static final String PATIENT_CPF = "Cpf";
     public static final String PATIENT_NAME = "P_Name";
 
     public static final String TABLE_DIAG = "Diagnostic";
@@ -48,6 +49,7 @@ public class CreateDB extends SQLiteOpenHelper{
 
         String sql_patient = "CREATE TABLE " + TABLE_PATIENT + "("
                 + ID + " integer primary key autoincrement,"
+                + PATIENT_CPF + " text,"
                 + PATIENT_NAME + " text)";
         db.execSQL(sql_patient);
 
