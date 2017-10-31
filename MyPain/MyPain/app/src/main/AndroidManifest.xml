@@ -27,7 +27,9 @@
         <activity android:name=".DiagFinal" />
         <activity android:name=".BodyPartsView.HeadView" />
         <activity android:name=".PatientRegister" />
-        <activity android:name=".ImageAreas"></activity>
+        <activity android:name=".ImageAreas" />
+        <activity android:name=".BodyParts.HeadActivity" />
+        <activity android:name=".PainRating"></activity>
     </application>
 
 </manifest>

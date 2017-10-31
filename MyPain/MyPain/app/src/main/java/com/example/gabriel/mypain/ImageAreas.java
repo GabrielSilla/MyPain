@@ -1,6 +1,7 @@
 package com.example.gabriel.mypain;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.gabriel.mypain.BodyParts.HeadActivity;
 
 public class ImageAreas extends Activity implements View.OnTouchListener {
 
@@ -64,6 +67,8 @@ public class ImageAreas extends Activity implements View.OnTouchListener {
 
         int currentResource = (tagNum == null) ? image : tagNum.intValue();
 
+        Intent intent = null;
+
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 if (currentResource == image) {
@@ -82,19 +87,17 @@ public class ImageAreas extends Activity implements View.OnTouchListener {
 
                 String text = null;
 
-                if (ct.closeMatch(Color.RED, touchColor, tolerance)) text = "HEAD";
-                else if (ct.closeMatch(Color.BLUE, touchColor, tolerance)) text = "TORSO";
-                else if (ct.closeMatch(Color.YELLOW, touchColor, tolerance)) text = "RIGHT LEG";
-                else if (ct.closeMatch(Color.GREEN, touchColor, tolerance)) text = "RIGHT ARM";
-                else if (ct.closeMatch(Color.GRAY, touchColor, tolerance)) text = "LEFT ARM";
-                else if (ct.closeMatch(Color.CYAN, touchColor, tolerance)) text = "LEFT LEG";
+                if (ct.closeMatch(Color.RED, touchColor, tolerance)){
+                    Intent headIntent = new Intent(getBaseContext(), HeadActivity.class);
+                    headIntent.putExtra("bodyOrientation", bodyOrientation);
+                    startActivity(headIntent);
+                }
+                else if (ct.closeMatch(Color.BLUE, touchColor, tolerance)) nextImage = R.drawable.torso_front;
+                else if (ct.closeMatch(Color.YELLOW, touchColor, tolerance)) nextImage = R.drawable.right_leg_front;
+                else if (ct.closeMatch(Color.GREEN, touchColor, tolerance)) nextImage = R.drawable.right_arm_front;
+                else if (ct.closeMatch(Color.GRAY, touchColor, tolerance)) nextImage = R.drawable.left_arm_front;
+                else if (ct.closeMatch(Color.CYAN, touchColor, tolerance)) nextImage = R.drawable.left_leg_front;
 
-                Toast.makeText(v.getContext(), text, Toast.LENGTH_SHORT).show();
-                // If the next image is the same as the last image, go back to the default.
-                // toast ("Current image: " + currentResource + " next: " + nextImage);
-                //if (currentResource == nextImage) {
-                // nextImage = R.drawable.p2_ship_default;
-                //}
                 handledHere = true;
                 break;
 
@@ -102,14 +105,6 @@ public class ImageAreas extends Activity implements View.OnTouchListener {
             default:
                 handledHere = false;
         } // end switch
-
-        /*if (handledHere) {
-
-            if (nextImage > 0) {
-                imageView.setImageResource(nextImage);
-                imageView.setTag(nextImage);
-            }
-        }*/
         return handledHere;
     }
 
