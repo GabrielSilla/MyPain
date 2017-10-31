@@ -14,6 +14,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -51,7 +52,7 @@ public class InjuriesList extends AppCompatActivity {
                 String selectedInjurie = item.getText().toString();
 
                 if(selectedInjurie.equals("Dor")){
-                    Intent intent = new Intent(getBaseContext(), Body_full.class);
+                    Intent intent = new Intent(view.getContext(), ImageAreas.class);
                     startActivity(intent);
                 }else{
                     if(!selectedInjuries.contains(selectedInjurie)){
