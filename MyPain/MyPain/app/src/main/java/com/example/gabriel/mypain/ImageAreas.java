@@ -16,15 +16,23 @@ import android.widget.Toast;
 import com.example.gabriel.mypain.BodyParts.HeadActivity;
 import com.example.gabriel.mypain.BodyParts.TorsoActivity;
 
+import java.util.ArrayList;
+
 public class ImageAreas extends Activity implements View.OnTouchListener {
 
     String bodyOrientation = "FRONT";
 
-
+    private ArrayList<String> selectedInjuries;
+    private String localLastInjurie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_areas);
+
+        Intent lastIntent = getIntent();
+        selectedInjuries = lastIntent.getStringArrayListExtra("selectedInjuries");
+        localLastInjurie = lastIntent.getStringExtra("localLastInjurie");
+
 
         final ImageView iv = (ImageView) findViewById(R.id.image_not_mask);
         final ImageView iv_mask = (ImageView) findViewById(R.id.image_areas);
@@ -91,12 +99,18 @@ public class ImageAreas extends Activity implements View.OnTouchListener {
                 if (ct.closeMatch(Color.RED, touchColor, tolerance)){
                     Intent headIntent = new Intent(getBaseContext(), HeadActivity.class);
                     headIntent.putExtra("bodyOrientation", bodyOrientation);
+                    headIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                    headIntent.putExtra("localLastInjurie", localLastInjurie);
                     startActivity(headIntent);
+                    finish();
                 }
                 else if (ct.closeMatch(Color.BLUE, touchColor, tolerance)) {
-                    Intent headIntent = new Intent(getBaseContext(), TorsoActivity.class);
-                    headIntent.putExtra("bodyOrientation", bodyOrientation);
-                    startActivity(headIntent);
+                    Intent torsoIntent = new Intent(getBaseContext(), TorsoActivity.class);
+                    torsoIntent.putExtra("bodyOrientation", bodyOrientation);
+                    torsoIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                    torsoIntent.putExtra("localLastInjurie", localLastInjurie);
+                    startActivity(torsoIntent);
+                    finish();
                 }
                 else if (ct.closeMatch(Color.YELLOW, touchColor, tolerance)) nextImage = R.drawable.right_leg_front;
                 else if (ct.closeMatch(Color.GREEN, touchColor, tolerance)) nextImage = R.drawable.right_arm_front;

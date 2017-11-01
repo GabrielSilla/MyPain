@@ -1,9 +1,11 @@
 package com.example.gabriel.mypain;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +17,15 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class PainRating extends Activity implements View.OnTouchListener {
 
     String painLocation = null;
+    private ArrayList<String> selectedInjuries;
+    private String localLastInjurie;
+    private AlertDialog alerta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +33,8 @@ public class PainRating extends Activity implements View.OnTouchListener {
 
         Intent thisView = getIntent();
         painLocation = thisView.getStringExtra("injurieLocal");
+        selectedInjuries = thisView.getStringArrayListExtra("selectedInjuries");
+        localLastInjurie = thisView.getStringExtra("localLastInjurie");
 
         final ImageView iv = (ImageView) findViewById(R.id.image_not_mask_pain_rating);
         if (iv != null){
@@ -55,6 +65,8 @@ public class PainRating extends Activity implements View.OnTouchListener {
 
         String painLevel = null;
 
+
+
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 if (currentResource == image) {
@@ -80,8 +92,44 @@ public class PainRating extends Activity implements View.OnTouchListener {
                 else if (ct.closeMatch(Color.MAGENTA, touchColor, tolerance)) painLevel = "8";
                 else if (ct.closeMatch(Color.rgb(128,0,0), touchColor, tolerance)) painLevel = "9";
                 else if (ct.closeMatch(Color.rgb(128,0,128), touchColor, tolerance)) painLevel = "10";
+                final String finalPainLevel = painLevel;
 
-                Toast.makeText(getBaseContext(), painLevel, Toast.LENGTH_SHORT).show();
+                if(painLevel != null){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Confirmar Sintoma?");
+                    builder.setMessage("\n Sintoma: " + localLastInjurie + " \n Local: " + painLocation + " \n Intensidade: " + finalPainLevel);
+                    builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            alerta.cancel();
+                        }
+                    });
+                    builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getBaseContext(), DiagFinal.class);
+                            selectedInjuries.add(localLastInjurie + " no(a) " + painLocation + " com intensidade: " + finalPainLevel);
+                            intent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("Adicionar outro sintoma", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getBaseContext(), InjurieLocationList.class);
+                            selectedInjuries.add(localLastInjurie + " no(a) " + painLocation + " com intensidade: " + finalPainLevel);
+                            intent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+
+                    alerta = builder.create();
+                    alerta.show();
+                }
 
                 handledHere = true;
                 break;

@@ -64,8 +64,9 @@ public class InjuriesList extends AppCompatActivity {
         btn_continue_diag.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), InjurieLocationList.class);
-                intent.putStringArrayListExtra("Injuries", selectedInjuries);
+                intent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
                 startActivity(intent);
+                finish();
             }
         });
     }

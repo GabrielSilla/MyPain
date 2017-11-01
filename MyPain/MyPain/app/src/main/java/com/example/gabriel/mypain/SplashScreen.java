@@ -18,12 +18,12 @@ public class SplashScreen extends AppCompatActivity {
                 .withTargetActivity(InitialScreen.class)
                 .withSplashTimeOut(3000)
                 .withBackgroundColor(Color.parseColor("#ffffff"))
-                .withLogo(R.mipmap.ic_launcher)
-                .withAfterLogoText("Bem-Vindo Paciente!")
+                .withBackgroundResource(R.drawable.splash)
+                .withAfterLogoText("")
                 .withFooterText("Fatec São Caetano do Sul - 2017");
 
         config.getAfterLogoTextView().setTextColor(Color.BLACK);
-        config.getFooterTextView().setTextColor(Color.parseColor("#2f8c16"));
+        config.getFooterTextView().setTextColor(Color.BLACK);
 
         View view = config.create();
 

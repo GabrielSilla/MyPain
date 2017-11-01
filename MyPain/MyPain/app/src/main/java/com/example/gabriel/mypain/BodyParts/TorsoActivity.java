@@ -15,9 +15,13 @@ import com.example.gabriel.mypain.ColorTool;
 import com.example.gabriel.mypain.PainRating;
 import com.example.gabriel.mypain.R;
 
+import java.util.ArrayList;
+
 public class TorsoActivity extends Activity implements View.OnTouchListener {
 
     String bodyOrientation = null;
+    private ArrayList<String> selectedInjuries;
+    private String localLastInjurie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,8 @@ public class TorsoActivity extends Activity implements View.OnTouchListener {
 
         Intent thisView = getIntent();
         bodyOrientation = thisView.getStringExtra("bodyOrientation");
+        selectedInjuries = thisView.getStringArrayListExtra("selectedInjuries");
+        localLastInjurie = thisView.getStringExtra("localLastInjurie");
 
         final ImageView iv = (ImageView) findViewById(R.id.image_not_mask_torso);
         final ImageView iv_mask = (ImageView) findViewById(R.id.image_areas_torso);
@@ -103,7 +109,10 @@ public class TorsoActivity extends Activity implements View.OnTouchListener {
             if(selectedArea != null){
                 Intent intentLocal = new Intent(getBaseContext(), PainRating.class);
                 intentLocal.putExtra("injurieLocal", selectedArea);
+                intentLocal.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                intentLocal.putExtra("localLastInjurie", localLastInjurie);
                 startActivity(intentLocal);
+                finish();
             }
         }
         return handledHere;
