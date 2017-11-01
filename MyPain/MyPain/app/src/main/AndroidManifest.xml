@@ -29,7 +29,9 @@
         <activity android:name=".PatientRegister" />
         <activity android:name=".ImageAreas" />
         <activity android:name=".BodyParts.HeadActivity" />
-        <activity android:name=".PainRating"></activity>
+        <activity android:name=".PainRating" />
+        <activity android:name=".BodyParts.TorsoActivity" />
+        <activity android:name=".InjurieLocationList"></activity>
     </application>
 
 </manifest>

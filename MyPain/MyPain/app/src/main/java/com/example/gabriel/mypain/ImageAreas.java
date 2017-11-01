@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.gabriel.mypain.BodyParts.HeadActivity;
+import com.example.gabriel.mypain.BodyParts.TorsoActivity;
 
 public class ImageAreas extends Activity implements View.OnTouchListener {
 
@@ -92,7 +93,11 @@ public class ImageAreas extends Activity implements View.OnTouchListener {
                     headIntent.putExtra("bodyOrientation", bodyOrientation);
                     startActivity(headIntent);
                 }
-                else if (ct.closeMatch(Color.BLUE, touchColor, tolerance)) nextImage = R.drawable.torso_front;
+                else if (ct.closeMatch(Color.BLUE, touchColor, tolerance)) {
+                    Intent headIntent = new Intent(getBaseContext(), TorsoActivity.class);
+                    headIntent.putExtra("bodyOrientation", bodyOrientation);
+                    startActivity(headIntent);
+                }
                 else if (ct.closeMatch(Color.YELLOW, touchColor, tolerance)) nextImage = R.drawable.right_leg_front;
                 else if (ct.closeMatch(Color.GREEN, touchColor, tolerance)) nextImage = R.drawable.right_arm_front;
                 else if (ct.closeMatch(Color.GRAY, touchColor, tolerance)) nextImage = R.drawable.left_arm_front;

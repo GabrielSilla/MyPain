@@ -34,7 +34,7 @@ public class InjuriesList extends AppCompatActivity {
         final ListView injuriesList = (ListView) findViewById(R.id.injurie_list_View);
         injuriesList.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 
-        Cursor cursor = dbController.getAllInjuries();
+        Cursor cursor = dbController.getInjuriesNonLocation();
 
         String[] nomeCampos = new String[] {CreateDB.TITLE};
         int[] idViews = new int[] {R.id.txt_title};
@@ -51,16 +51,11 @@ public class InjuriesList extends AppCompatActivity {
 
                 String selectedInjurie = item.getText().toString();
 
-                if(selectedInjurie.equals("Dor")){
-                    Intent intent = new Intent(view.getContext(), ImageAreas.class);
-                    startActivity(intent);
-                }else{
-                    if(!selectedInjuries.contains(selectedInjurie)){
-                        selectedInjuries.add(selectedInjurie);
-                    }
-                    else{
-                        selectedInjuries.remove(selectedInjurie);
-                    }
+                if(!selectedInjuries.contains(selectedInjurie)){
+                    selectedInjuries.add(selectedInjurie);
+                }
+                else{
+                    selectedInjuries.remove(selectedInjurie);
                 }
             }
         });
@@ -68,7 +63,7 @@ public class InjuriesList extends AppCompatActivity {
         Button btn_continue_diag = (Button) this.findViewById(R.id.btn_injuries_continue);
         btn_continue_diag.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DiagFinal.class);
+                Intent intent = new Intent(v.getContext(), InjurieLocationList.class);
                 intent.putStringArrayListExtra("Injuries", selectedInjuries);
                 startActivity(intent);
             }

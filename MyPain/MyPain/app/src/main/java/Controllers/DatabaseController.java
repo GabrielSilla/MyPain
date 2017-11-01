@@ -33,6 +33,32 @@ public class DatabaseController {
         return cursor;
     }
 
+    public Cursor getInjuriesNonLocation(){
+        Cursor cursor;
+        String[] fields = {database.ID,database.TITLE};
+        db = database.getReadableDatabase();
+        cursor = db.query(database.TABLE, fields, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+
+    public Cursor getInjuriesLocation(){
+        Cursor cursor;
+        String[] fields = {database.ID,database.TITLE_INJURIE_LOCATION};
+        db = database.getReadableDatabase();
+        cursor = db.query(database.TABLE_INJURIE_LOCATION, fields, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+
 
     public String registerPacienteIntoDB(String name, String cpf){
         ContentValues values;
