@@ -45,6 +45,7 @@ public class InjurieLocationList extends AppCompatActivity {
 
         injuriesList.setAdapter(adapter);
 
+<<<<<<< Updated upstream
         injuriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,5 +58,15 @@ public class InjurieLocationList extends AppCompatActivity {
                 finish();
             }
         });
+
+=======
+        injuriesList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tx = (TextView) v.findViewById(R.id.txt_title);
+                Toast.makeText(getBaseContext(), tx.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+>>>>>>> Stashed changes
     }
 }

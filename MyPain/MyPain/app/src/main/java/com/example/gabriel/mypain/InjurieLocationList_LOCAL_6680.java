@@ -57,5 +57,6 @@ public class InjurieLocationList extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 }

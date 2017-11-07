@@ -28,6 +28,10 @@ public class InitialScreen extends AppCompatActivity
 
         DatabaseController dbController = new DatabaseController(getBaseContext());
 
+        if(dbController.getCurrentUser() == null){
+
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -104,5 +108,9 @@ public class InitialScreen extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void createAlertDialogLogIn(){
+
     }
 }

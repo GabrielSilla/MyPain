@@ -33,11 +33,15 @@ public class CreateDB extends SQLiteOpenHelper{
     public static final String PACIENT_ID = "PatientId";
     public static final String DIAG_TEXT = "DiagnosticText";
 
+    public static final String TABLE_USER = "MedicUser";
+    public static final String USER_CRM = "CRM";
+    public static final String USER_NAME = "Name";
+
     public static final String TABLE_INJURIE_LOCATION = "InjuriesLocation";
     public static final String TITLE_INJURIE_LOCATION = "InjuriesLocationName";
 
     private static final List<String> injuriesList = Arrays.asList("Fraqueza", "Convulsão (ataque)", "Soluço", "Febre", "Queimação", "Cansaço", "Coriza (nariz escorrendo)", "Náusea (vontade de vomitar)", "Tontura (sensação de desmaio)", "Diarreia (dor de barriga)", "Prisão de ventre (intestino preso)",
-            "Retenção urinária (dificuldade em urinar)", "Tremor", "Suor", "Manchas", "Sangramento", "Dispneia (falta de ar )", "Espirros", "Tosse", "Flatulência (gazes)",
+            "Retenção urinária (dificuldade em urinar)", "Tremor", "Suor", "Dispneia (falta de ar )", "Espirros", "Tosse", "Flatulência (gazes)",
             "Eructação (arroto)", "Sangramento", "Insônia (dificuldade em dormir)", "Sonolência", "Palpitação (arritmia)", "Surdez", "Tremedeira", "Soluços", "Cólica");
 
     private static final List<String> injuriesListLocation = Arrays.asList("Dor", "Coceira", "Sensibilidade (dormência)", "Manchas", "Caroços", "Inchaço (edema)", "Câimbra");
@@ -70,6 +74,11 @@ public class CreateDB extends SQLiteOpenHelper{
                 + PACIENT_ID + " integer,"
                 + DIAG_TEXT + " text)";
 
+        String sql_user = "CREATE TABLE " + TABLE_USER + "("
+                + USER_CRM + " text,"
+                + USER_NAME + " text)";
+
+
         db.execSQL(sql_diagnostic);
 
         for(String injurie : injuriesList){
@@ -92,6 +101,7 @@ public class CreateDB extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATIENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIAG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(db);
     }
 }

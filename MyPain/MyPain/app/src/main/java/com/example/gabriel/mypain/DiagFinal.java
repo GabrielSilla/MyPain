@@ -29,6 +29,7 @@ public class DiagFinal extends AppCompatActivity {
         catch(Exception ex){
             Toast.makeText(this.getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT);
         }
+
     }
 
     private String returnInjurieListAsText(ArrayList<String> injuriesList){
@@ -40,4 +41,6 @@ public class DiagFinal extends AppCompatActivity {
 
         return injurieText;
     }
+
+
 }

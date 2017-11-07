@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 import Resources.CreateDB;
 
 /**
@@ -59,6 +61,57 @@ public class DatabaseController {
         return cursor;
     }
 
+    public ArrayList<String> getCurrentUser(){
+        Cursor cursor;
+        String[] fields = {database.USER_NAME, database.USER_CRM};
+        db = database.getReadableDatabase();
+        cursor = db.query(database.TABLE_USER, fields, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+
+            ArrayList<String> user = new ArrayList<String>();
+            user.add(cursor.getString(cursor.getColumnIndex("Name")));
+            user.add(cursor.getString(cursor.getColumnIndex("CRM")));
+
+            db.close();
+
+            return user;
+        }
+        else{
+            return null;
+        }
+
+    }
+
+    public String registerNewUser(String name, String crm){
+        db = database.getWritableDatabase();
+        db.execSQL("delete from " + CreateDB.TABLE_USER);
+
+        ContentValues values;
+        long result;
+
+        values = new ContentValues();
+        values.put(CreateDB.USER_NAME, name);
+        values.put(CreateDB.USER_CRM, crm);
+
+        result = db.insert(CreateDB.TABLE_USER, null, values);
+        db.close();
+
+        if(result ==-1){
+            return "Erro ao tentar inserir registro";
+        }
+        else{
+            return "Registro Inserido com sucesso";
+        }
+    }
+
+    public void userLogOut(){
+        db = database.getWritableDatabase();
+        db.execSQL("delete from " + CreateDB.TABLE_USER);
+
+        db.close();
+    }
 
     public String registerPacienteIntoDB(String name, String cpf){
         ContentValues values;
