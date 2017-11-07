@@ -1,9 +1,12 @@
 package com.example.gabriel.mypain;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import Controllers.DatabaseController;
 
@@ -29,7 +33,7 @@ public class InitialScreen extends AppCompatActivity
         DatabaseController dbController = new DatabaseController(getBaseContext());
 
         if(dbController.getCurrentUser() == null){
-
+            createAlertDialogLogIn();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -111,6 +115,34 @@ public class InitialScreen extends AppCompatActivity
     }
 
     public void createAlertDialogLogIn(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Identifique-se para realizar seus diagnósticos!");
+
+        final EditText inputName = new EditText(this);
+        inputName.setInputType(InputType.TYPE_CLASS_TEXT);
+        inputName.setText("Digite seu nome aqui...");
+
+        final EditText inputCrm = new EditText(this);
+        inputCrm.setInputType(InputType.TYPE_CLASS_TEXT);
+        inputCrm.setText("Digite seu CRM aqui...");
+
+        builder.setView(inputName);
+        builder.setView(inputCrm);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
 
     }
 }
