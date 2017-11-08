@@ -14,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.gabriel.mypain.BodyParts.HeadActivity;
+import com.example.gabriel.mypain.BodyParts.LeftArmActivity;
+import com.example.gabriel.mypain.BodyParts.LeftLegActivity;
+import com.example.gabriel.mypain.BodyParts.RightArmActivity;
+import com.example.gabriel.mypain.BodyParts.RightLegActivity;
 import com.example.gabriel.mypain.BodyParts.TorsoActivity;
 
 import java.util.ArrayList;
@@ -102,7 +106,6 @@ public class ImageAreas extends Activity implements View.OnTouchListener {
                     headIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
                     headIntent.putExtra("localLastInjurie", localLastInjurie);
                     startActivity(headIntent);
-                    finish();
                 }
                 else if (ct.closeMatch(Color.BLUE, touchColor, tolerance)) {
                     Intent torsoIntent = new Intent(getBaseContext(), TorsoActivity.class);
@@ -110,13 +113,35 @@ public class ImageAreas extends Activity implements View.OnTouchListener {
                     torsoIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
                     torsoIntent.putExtra("localLastInjurie", localLastInjurie);
                     startActivity(torsoIntent);
-                    finish();
                 }
-                else if (ct.closeMatch(Color.YELLOW, touchColor, tolerance)) nextImage = R.drawable.right_leg_front;
-                else if (ct.closeMatch(Color.GREEN, touchColor, tolerance)) nextImage = R.drawable.right_arm_front;
-                else if (ct.closeMatch(Color.GRAY, touchColor, tolerance)) nextImage = R.drawable.left_arm_front;
-                else if (ct.closeMatch(Color.CYAN, touchColor, tolerance)) nextImage = R.drawable.left_leg_front;
-
+                else if (ct.closeMatch(Color.YELLOW, touchColor, tolerance)){
+                    Intent rightlegIntent = new Intent(getBaseContext(), RightLegActivity.class);
+                    rightlegIntent.putExtra("bodyOrientation", bodyOrientation);
+                    rightlegIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                    rightlegIntent.putExtra("localLastInjurie", localLastInjurie);
+                    startActivity(rightlegIntent);
+                }
+                else if (ct.closeMatch(Color.GREEN, touchColor, tolerance)) {
+                    Intent rightarmIntent = new Intent(getBaseContext(), RightArmActivity.class);
+                    rightarmIntent.putExtra("bodyOrientation", bodyOrientation);
+                    rightarmIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                    rightarmIntent.putExtra("localLastInjurie", localLastInjurie);
+                    startActivity(rightarmIntent);
+                }
+                else if (ct.closeMatch(Color.GRAY, touchColor, tolerance)) {
+                    Intent leftarmIntent = new Intent(getBaseContext(), LeftArmActivity.class);
+                    leftarmIntent.putExtra("bodyOrientation", bodyOrientation);
+                    leftarmIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                    leftarmIntent.putExtra("localLastInjurie", localLastInjurie);
+                    startActivity(leftarmIntent);
+                }
+                else if (ct.closeMatch(Color.CYAN, touchColor, tolerance)){
+                    Intent leftlegIntent = new Intent(getBaseContext(), LeftLegActivity.class);
+                    leftlegIntent.putExtra("bodyOrientation", bodyOrientation);
+                    leftlegIntent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                    leftlegIntent.putExtra("localLastInjurie", localLastInjurie);
+                    startActivity(leftlegIntent);
+                }
                 handledHere = true;
                 break;
 

@@ -31,6 +31,10 @@
         <activity android:name=".BodyParts.HeadActivity" />
         <activity android:name=".PainRating" />
         <activity android:name=".BodyParts.TorsoActivity" />
+        <activity android:name=".BodyParts.LeftArmActivity" />
+        <activity android:name=".BodyParts.LeftLegActivity" />
+        <activity android:name=".BodyParts.RightArmActivity" />
+        <activity android:name=".BodyParts.RightLegActivity" />
         <activity android:name=".InjurieLocationList"></activity>
     </application>
 
