@@ -22,13 +22,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import Controllers.DatabaseController;
 
 public class InitialScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     AlertDialog alerta;
-
+    Boolean isLogged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,14 @@ public class InitialScreen extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DatabaseController dbController = new DatabaseController(getBaseContext());
+        final DatabaseController dbController = new DatabaseController(getBaseContext());
         Cursor user = dbController.getCurrentUser();
         if(user.getCount() > 0){
-            Toast.makeText(InitialScreen.this, user.getString(user.getColumnIndex("Name")), Toast.LENGTH_SHORT);
+            isLogged = true;
+            TextView txt_user = (TextView) findViewById(R.id.txt_user_welcome);
+            txt_user.setText(user.getString(user.getColumnIndex("Name")).split(" ")[0] + ", o que deseja fazer?");
         }else{
+            isLogged = false;
             createAlertDialogLogIn();
         }
 
@@ -54,18 +59,42 @@ public class InitialScreen extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        FloatingActionButton logout = (FloatingActionButton) this.findViewById(R.id.logout_btn);
         FloatingActionButton registerPatient = (FloatingActionButton) this.findViewById(R.id.btnRegisterPatient);
         FloatingActionButton fabNewDiag = (FloatingActionButton) this.findViewById(R.id.new_diag);
         fabNewDiag.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),InjuriesList.class);
-                startActivity(intent);
+                if(isLogged){
+                    Intent intent = new Intent(v.getContext(),InjuriesList.class);
+                    startActivity(intent);
+                }else{
+                    createAlertDialogLogIn();
+                }
             }
         });
         registerPatient.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(v.getContext(), PatientRegister.class);
-                startActivity(intent);
+                if(isLogged){
+                    Intent intent = new Intent(v.getContext(), PatientRegister.class);
+                    startActivity(intent);
+                }else{
+                    createAlertDialogLogIn();
+                }
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isLogged){
+                    isLogged = false;
+                    dbController.userLogOut();
+                    createAlertDialogLogIn();
+                    TextView txt_user = (TextView) findViewById(R.id.txt_user_welcome);
+                    txt_user.setText("O que deseja fazer?");
+                }
+                else{
+                    Snackbar.make(v, "Você precisa estar identificado para fazer isto!", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -127,15 +156,26 @@ public class InitialScreen extends AppCompatActivity
         LayoutInflater li = getLayoutInflater();
 
         //inflamos o layout alerta.xml na view
-        View view = li.inflate(R.layout.alertdialog_login, null);
+        final View view = li.inflate(R.layout.alertdialog_login, null);
         //definimos para o botão do layout um clickListener
         view.findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 //exibe um Toast informativo.
                 DatabaseController dbController = new DatabaseController(getBaseContext());
-                dbController.registerNewUser("Gabriel", "12344667");
-                Toast.makeText(InitialScreen.this, "Logou!", Toast.LENGTH_SHORT).show();
-                alerta.dismiss();
+                EditText name = (EditText) alerta.findViewById(R.id.name_text);
+                EditText crm = (EditText) alerta.findViewById(R.id.crm_text);
+
+                if(crm.getText().toString().isEmpty() || name.getText().toString().isEmpty()){
+                    Toast.makeText(InitialScreen.this, "Preencha os dois campos!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    dbController.registerNewUser(name.getText().toString(), crm.getText().toString());
+                    Toast.makeText(InitialScreen.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                    isLogged = true;
+                    TextView txt_user = (TextView) findViewById(R.id.txt_user_welcome);
+                    txt_user.setText(name.getText().toString().split(" ")[0] + ", o que deseja fazer?");
+                    alerta.dismiss();
+                }
             }
         });
 
