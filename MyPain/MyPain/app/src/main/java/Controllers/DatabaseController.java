@@ -61,7 +61,7 @@ public class DatabaseController {
         return cursor;
     }
 
-    public ArrayList<String> getCurrentUser(){
+    public Cursor getCurrentUser(){
         Cursor cursor;
         String[] fields = {database.USER_NAME, database.USER_CRM};
         db = database.getReadableDatabase();
@@ -69,19 +69,9 @@ public class DatabaseController {
 
         if(cursor!=null){
             cursor.moveToFirst();
-
-            ArrayList<String> user = new ArrayList<String>();
-            user.add(cursor.getString(cursor.getColumnIndex("Name")));
-            user.add(cursor.getString(cursor.getColumnIndex("CRM")));
-
-            db.close();
-
-            return user;
         }
-        else{
-            return null;
-        }
-
+        db.close();
+        return cursor;
     }
 
     public String registerNewUser(String name, String crm){

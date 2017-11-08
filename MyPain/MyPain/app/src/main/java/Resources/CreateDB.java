@@ -42,7 +42,7 @@ public class CreateDB extends SQLiteOpenHelper{
 
     private static final List<String> injuriesList = Arrays.asList("Fraqueza", "Convulsão (ataque)", "Soluço", "Febre", "Queimação", "Cansaço", "Coriza (nariz escorrendo)", "Náusea (vontade de vomitar)", "Tontura (sensação de desmaio)", "Diarreia (dor de barriga)", "Prisão de ventre (intestino preso)",
             "Retenção urinária (dificuldade em urinar)", "Tremor", "Suor", "Dispneia (falta de ar )", "Espirros", "Tosse", "Flatulência (gazes)",
-            "Eructação (arroto)", "Sangramento", "Insônia (dificuldade em dormir)", "Sonolência", "Palpitação (arritmia)", "Surdez", "Tremedeira", "Soluços", "Cólica");
+            "Eructação (arroto)", "Sangramento", "Insônia (dificuldade em dormir)", "Sonolência", "Palpitação (arritmia)", "Surdez", "Tremedeira", "Cólica");
 
     private static final List<String> injuriesListLocation = Arrays.asList("Dor", "Coceira", "Sensibilidade (dormência)", "Manchas", "Caroços", "Inchaço (edema)", "Câimbra");
 
@@ -73,13 +73,12 @@ public class CreateDB extends SQLiteOpenHelper{
                 + DIAG_DATE + " date,"
                 + PACIENT_ID + " integer,"
                 + DIAG_TEXT + " text)";
+        db.execSQL(sql_diagnostic);
 
         String sql_user = "CREATE TABLE " + TABLE_USER + "("
                 + USER_CRM + " text,"
                 + USER_NAME + " text)";
-
-
-        db.execSQL(sql_diagnostic);
+        db.execSQL(sql_user);
 
         for(String injurie : injuriesList){
 
