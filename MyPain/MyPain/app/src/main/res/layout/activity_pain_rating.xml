@@ -6,36 +6,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="8dp"
-        android:text="Escolher outro sintoma"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginRight="34dp"
-        android:layout_marginTop="8dp"
-        android:text="Finalizar"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
-        app:layout_constraintVertical_bias="0.0" />
-
     <RelativeLayout
         android:layout_width="343dp"
         android:layout_height="442dp"
@@ -55,7 +25,7 @@
             android:id="@+id/image_areas_pain_rating"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
+            android:scaleType="center"
             android:src="@drawable/pain_rating_mask"
             android:visibility="invisible"
             tools:layout_editor_absoluteX="0dp"
@@ -65,8 +35,10 @@
             android:id="@+id/image_not_mask_pain_rating"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:cropToPadding="true"
             android:scaleType="fitCenter"
             android:src="@drawable/pain_rating"
             tools:layout_editor_absoluteX="0dp"

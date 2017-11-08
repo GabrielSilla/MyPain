@@ -70,7 +70,7 @@
                 app:srcCompat="@mipmap/ic_search_patient" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txt_user_welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_above="@+id/new_diag"
@@ -167,7 +167,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/txt_user_welcome"
                 app:srcCompat="?android:attr/actionModePasteDrawable" />
 
             <TextView
