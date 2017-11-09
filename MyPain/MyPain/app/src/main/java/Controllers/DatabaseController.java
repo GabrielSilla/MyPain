@@ -4,10 +4,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import Resources.CreateDB;
+
+import static java.util.Calendar.DATE;
 
 /**
  * Created by Gabriel on 22/08/2017.
@@ -150,5 +157,43 @@ public class DatabaseController {
         }
         db.close();
         return cursor;
+    }
+
+    public String saveDiag(String patientCpf, String diagText){
+        ContentValues values;
+        long result;
+
+        Cursor cursor = getCurrentUser();
+
+        SimpleDateFormat hour_pattern = new SimpleDateFormat("HH:mm");
+
+        Date date = new Date();
+        Calendar  cal = Calendar.getInstance();
+        cal.setTime(date);
+        Date today = cal.getTime();
+        String now = hour_pattern.format(today);
+
+        String formattedDate = DateFormat.getDateInstance().format(new Date()) + " " + now;
+
+        String userName = cursor.getString(cursor.getColumnIndex("Name"));
+        String userCrm = cursor.getString(cursor.getColumnIndex("CRM"));
+
+        db = database.getWritableDatabase();
+        values = new ContentValues();
+        values.put(CreateDB.DIAG_DATE, formattedDate);
+        values.put(CreateDB.PATIENT_CPF, patientCpf);
+        values.put(CreateDB.USER_NAME, userName);
+        values.put(CreateDB.USER_CRM, userCrm);
+        values.put(CreateDB.DIAG_TEXT, diagText);
+
+        result = db.insert(CreateDB.TABLE_DIAG, null, values);
+        db.close();
+
+        if(result ==-1){
+            return "Erro ao tentar inserir registro";
+        }
+        else{
+            return "Registro Inserido com sucesso";
+        }
     }
 }

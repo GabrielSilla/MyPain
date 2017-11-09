@@ -70,7 +70,7 @@ public class CreateDB extends SQLiteOpenHelper{
 
         String sql_diagnostic = "CREATE TABLE " + TABLE_DIAG + "("
                 + ID + " integer primary key autoincrement,"
-                + DIAG_DATE + " date,"
+                + DIAG_DATE + " text,"
                 + PATIENT_CPF + " text,"
                 + USER_CRM + " text,"
                 + USER_NAME + "text,"
