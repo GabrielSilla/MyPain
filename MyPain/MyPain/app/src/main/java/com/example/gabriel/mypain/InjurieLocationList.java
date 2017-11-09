@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -22,10 +23,15 @@ import Resources.CreateDB;
 
 public class InjurieLocationList extends AppCompatActivity {
     private ArrayList<String> selectedInjuries;
+    private String pacientName;
+    private String pacientCpf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent lastIntent = getIntent();
         selectedInjuries = lastIntent.getStringArrayListExtra("selectedInjuries");
+        pacientName = lastIntent.getStringExtra("pacientName");
+        pacientCpf = lastIntent.getStringExtra("pacientCpf");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_injurie_location_list);
@@ -53,7 +59,24 @@ public class InjurieLocationList extends AppCompatActivity {
                 Intent bodySelect = new Intent(getBaseContext(), ImageAreas.class);
                 bodySelect.putStringArrayListExtra("selectedInjuries", selectedInjuries);
                 bodySelect.putExtra("localLastInjurie", textInjurie.getText().toString());
+                bodySelect.putExtra("pacientName", pacientName);
+                bodySelect.putExtra("pacientCpf", pacientCpf);
+
                 startActivity(bodySelect);
+                finish();
+            }
+        });
+
+        Button button_final = (Button) findViewById(R.id.btn_injuries_final);
+        button_final.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent diagFinal = new Intent(getBaseContext(), DiagFinal.class);
+                diagFinal.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                diagFinal.putExtra("pacientName", pacientName);
+                diagFinal.putExtra("pacientCpf", pacientCpf);
+
+                startActivity(diagFinal);
                 finish();
             }
         });

@@ -35,7 +35,8 @@
         <activity android:name=".BodyParts.LeftLegActivity" />
         <activity android:name=".BodyParts.RightArmActivity" />
         <activity android:name=".BodyParts.RightLegActivity" />
-        <activity android:name=".InjurieLocationList"></activity>
+        <activity android:name=".InjurieLocationList" />
+        <activity android:name=".PacientSelect"></activity>
     </application>
 
 </manifest>

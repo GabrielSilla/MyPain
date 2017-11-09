@@ -122,4 +122,33 @@ public class DatabaseController {
             return "Registro Inserido com sucesso";
         }
     }
+
+    public Cursor getAllPacient(){
+        Cursor cursor;
+        String[] fields = {database.ID, database.PATIENT_NAME, database.PATIENT_CPF};
+        db = database.getReadableDatabase();
+        cursor = db.query(database.TABLE_PATIENT, fields,null, null, null, null, null,null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+
+    public Cursor getPacientByCpf(String cpf){
+        Cursor cursor;
+        String[] fields = {database.ID, database.PATIENT_NAME, database.PATIENT_CPF};
+
+        String where = CreateDB.PATIENT_CPF + "=" + cpf;
+
+        db = database.getReadableDatabase();
+        cursor = db.query(database.TABLE_PATIENT, fields, where, null, null, null, null,null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
 }

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class DiagFinal extends AppCompatActivity {
     ArrayList<String> injuriesList;
 
+    private String pacientName;
+    private String pacientCpf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,11 @@ public class DiagFinal extends AppCompatActivity {
         try{
             Intent lastIntent = getIntent();
             injuriesList = lastIntent.getStringArrayListExtra("selectedInjuries");
+            pacientName = lastIntent.getStringExtra("pacientName");
+            pacientCpf = lastIntent.getStringExtra("pacientCpf");
+
+            TextView pacientText = (TextView) findViewById(R.id.pacient_final_txt);
+            pacientText.setText("Paciente: " + pacientName + "\nCPF: " + pacientCpf);
 
             TextView injuriesTextList = (TextView) findViewById(R.id.injuries_final_txt);
             injuriesTextList.setText(returnInjurieListAsText(injuriesList));

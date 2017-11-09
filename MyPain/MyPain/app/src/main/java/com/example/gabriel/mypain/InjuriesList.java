@@ -24,10 +24,16 @@ import Resources.CreateDB;
 public class InjuriesList extends AppCompatActivity {
     private ArrayList<String> selectedInjuries = new ArrayList<String>();
 
+    private String pacientName;
+    private String pacientCpf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_injuries_list);
+
+        Intent thisIntent = getIntent();
+        pacientName = thisIntent.getStringExtra("pacientName");
+        pacientCpf = thisIntent.getStringExtra("pacientCpf");
 
         DatabaseController dbController = new DatabaseController(getBaseContext());
 
@@ -65,6 +71,9 @@ public class InjuriesList extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), InjurieLocationList.class);
                 intent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                intent.putExtra("pacientName", pacientName);
+                intent.putExtra("pacientCpf", pacientCpf);
+
                 startActivity(intent);
                 finish();
             }

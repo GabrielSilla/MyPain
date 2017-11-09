@@ -21,6 +21,9 @@ public class RightArmActivity extends Activity implements View.OnTouchListener {
     String bodyOrientation = null;
     private ArrayList<String> selectedInjuries;
     private String localLastInjurie;
+
+    private String pacientName;
+    private String pacientCpf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,8 @@ public class RightArmActivity extends Activity implements View.OnTouchListener {
         bodyOrientation = thisView.getStringExtra("bodyOrientation");
         selectedInjuries = thisView.getStringArrayListExtra("selectedInjuries");
         localLastInjurie = thisView.getStringExtra("localLastInjurie");
+        pacientName = thisView.getStringExtra("pacientName");
+        pacientCpf = thisView.getStringExtra("pacientCpf");
 
         final ImageView iv = (ImageView) findViewById(R.id.image_not_mask_right_arm);
         final ImageView iv_mask = (ImageView) findViewById(R.id.image_areas_right_arm);
@@ -101,6 +106,8 @@ public class RightArmActivity extends Activity implements View.OnTouchListener {
                 intentLocal.putExtra("injurieLocal", selectedArea);
                 intentLocal.putStringArrayListExtra("selectedInjuries", selectedInjuries);
                 intentLocal.putExtra("localLastInjurie", localLastInjurie);
+                intentLocal.putExtra("pacientName", pacientName);
+                intentLocal.putExtra("pacientCpf", pacientCpf);
                 startActivity(intentLocal);
                 finish();
             }

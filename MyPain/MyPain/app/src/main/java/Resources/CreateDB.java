@@ -30,8 +30,8 @@ public class CreateDB extends SQLiteOpenHelper{
 
     public static final String TABLE_DIAG = "Diagnostic";
     public static final String DIAG_DATE = "Date";
-    public static final String PACIENT_ID = "PatientId";
     public static final String DIAG_TEXT = "DiagnosticText";
+
 
     public static final String TABLE_USER = "MedicUser";
     public static final String USER_CRM = "CRM";
@@ -71,7 +71,9 @@ public class CreateDB extends SQLiteOpenHelper{
         String sql_diagnostic = "CREATE TABLE " + TABLE_DIAG + "("
                 + ID + " integer primary key autoincrement,"
                 + DIAG_DATE + " date,"
-                + PACIENT_ID + " integer,"
+                + PATIENT_CPF + " text,"
+                + USER_CRM + " text,"
+                + USER_NAME + "text,"
                 + DIAG_TEXT + " text)";
         db.execSQL(sql_diagnostic);
 

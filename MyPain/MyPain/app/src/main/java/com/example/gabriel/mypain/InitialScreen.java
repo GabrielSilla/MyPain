@@ -65,7 +65,7 @@ public class InitialScreen extends AppCompatActivity
         fabNewDiag.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(isLogged){
-                    Intent intent = new Intent(v.getContext(),InjuriesList.class);
+                    Intent intent = new Intent(v.getContext(),PacientSelect.class);
                     startActivity(intent);
                 }else{
                     createAlertDialogLogIn();

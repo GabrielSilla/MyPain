@@ -5,8 +5,8 @@
     android:id="@+id/txt_title"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textSize="20sp"
     android:gravity="center_vertical"
     android:padding="5sp"
     android:text="Injurie"
-    android:textColorLink="@android:color/holo_blue_dark" />
+    android:textColorLink="@android:color/holo_blue_dark"
+    android:textSize="20sp" />

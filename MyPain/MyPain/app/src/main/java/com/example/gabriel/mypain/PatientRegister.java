@@ -1,5 +1,6 @@
 package com.example.gabriel.mypain;
 
+import android.database.Cursor;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,9 +41,14 @@ public class PatientRegister extends AppCompatActivity {
                     Toast.makeText(v.getContext(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 }else{
                     DatabaseController db = new DatabaseController(getBaseContext());
-                    String result = db.registerPacienteIntoDB(name.getText().toString(), cpf.getText().toString());
+                    Cursor cursor = db.getPacientByCpf(cpf.getText().toString());
 
-                    Snackbar.make(v, result, Snackbar.LENGTH_SHORT).show();
+                    if(cursor.getCount() > 0){
+                        Snackbar.make(v, "CPF já cadastrado no sistema!", Snackbar.LENGTH_SHORT).show();
+                    }else {
+                        String result = db.registerPacienteIntoDB(name.getText().toString(), cpf.getText().toString());
+                        Snackbar.make(v, result, Snackbar.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

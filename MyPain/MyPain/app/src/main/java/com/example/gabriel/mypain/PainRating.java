@@ -26,6 +26,8 @@ public class PainRating extends Activity implements View.OnTouchListener {
     private String localLastInjurie;
     private AlertDialog alerta;
 
+    private String pacientName;
+    private String pacientCpf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,8 @@ public class PainRating extends Activity implements View.OnTouchListener {
         painLocation = thisView.getStringExtra("injurieLocal");
         selectedInjuries = thisView.getStringArrayListExtra("selectedInjuries");
         localLastInjurie = thisView.getStringExtra("localLastInjurie");
+        pacientName = thisView.getStringExtra("pacientName");
+        pacientCpf = thisView.getStringExtra("pacientCpf");
 
         final ImageView iv = (ImageView) findViewById(R.id.image_not_mask_pain_rating);
         if (iv != null){
@@ -110,6 +114,8 @@ public class PainRating extends Activity implements View.OnTouchListener {
                             Intent intent = new Intent(getBaseContext(), DiagFinal.class);
                             selectedInjuries.add(localLastInjurie + " no(a) " + painLocation + " com intensidade: " + finalPainLevel);
                             intent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                            intent.putExtra("pacientName", pacientName);
+                            intent.putExtra("pacientCpf", pacientCpf);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
@@ -121,6 +127,8 @@ public class PainRating extends Activity implements View.OnTouchListener {
                             Intent intent = new Intent(getBaseContext(), InjurieLocationList.class);
                             selectedInjuries.add(localLastInjurie + " no(a) " + painLocation + " com intensidade: " + finalPainLevel);
                             intent.putStringArrayListExtra("selectedInjuries", selectedInjuries);
+                            intent.putExtra("pacientName", pacientName);
+                            intent.putExtra("pacientCpf", pacientCpf);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
