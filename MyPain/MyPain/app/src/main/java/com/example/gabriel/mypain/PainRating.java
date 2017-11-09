@@ -108,7 +108,7 @@ public class PainRating extends Activity implements View.OnTouchListener {
                             alerta.cancel();
                         }
                     });
-                    builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Adicionar outro sintoma", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(getBaseContext(), DiagFinal.class);
@@ -121,7 +121,7 @@ public class PainRating extends Activity implements View.OnTouchListener {
                             finish();
                         }
                     });
-                    builder.setNegativeButton("Adicionar outro sintoma", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton("Finalizar e exibir relatorio", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(getBaseContext(), InjurieLocationList.class);

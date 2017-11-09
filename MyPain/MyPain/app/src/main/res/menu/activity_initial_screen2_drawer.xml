@@ -5,7 +5,11 @@
         <item
             android:id="@+id/nav_start"
             android:icon="@android:drawable/ic_menu_add"
-            android:title="Novo diagnostico" />
+            android:title="Selecionar sintomas" />
+        <item
+            android:id="@+id/nav_change"
+            android:icon="@android:drawable/ic_menu_revert"
+            android:title="Trocar usuario"/>
         <item
             android:id="@+id/nav_about"
             android:icon="@android:drawable/ic_menu_help"

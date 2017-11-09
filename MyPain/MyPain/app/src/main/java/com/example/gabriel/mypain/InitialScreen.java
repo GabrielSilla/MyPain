@@ -82,19 +82,25 @@ public class InitialScreen extends AppCompatActivity
                 }
             }
         });
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(isLogged){
+//                    isLogged = false;
+//                    dbController.userLogOut();
+//                    createAlertDialogLogIn();
+//                    TextView txt_user = (TextView) findViewById(R.id.txt_user_welcome);
+//                    txt_user.setText("O que deseja fazer?");
+//                }
+//                else{
+//                    Snackbar.make(v, "Você precisa estar identificado para fazer isto!", Snackbar.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isLogged){
-                    isLogged = false;
-                    dbController.userLogOut();
-                    createAlertDialogLogIn();
-                    TextView txt_user = (TextView) findViewById(R.id.txt_user_welcome);
-                    txt_user.setText("O que deseja fazer?");
-                }
-                else{
-                    Snackbar.make(v, "Você precisa estar identificado para fazer isto!", Snackbar.LENGTH_SHORT).show();
-                }
+                finish();
             }
         });
 
@@ -124,10 +130,6 @@ public class InitialScreen extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -143,8 +145,10 @@ public class InitialScreen extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_exit) {
+        } else if (id == R.id.nav_change) {
 
+        } else if (id == R.id.nav_exit) {
+            this.finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

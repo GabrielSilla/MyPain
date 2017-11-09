@@ -183,7 +183,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Buscar diagnosticos"
+                android:text="Buscar relatorios"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnRegisterPatient"
                 app:layout_constraintHorizontal_bias="0.087"

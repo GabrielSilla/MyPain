@@ -21,7 +21,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="Continuar"
+            android:text="Avançar"
             android:visibility="visible" />
 
         <ListView

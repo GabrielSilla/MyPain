@@ -40,11 +40,11 @@ public class CreateDB extends SQLiteOpenHelper{
     public static final String TABLE_INJURIE_LOCATION = "InjuriesLocation";
     public static final String TITLE_INJURIE_LOCATION = "InjuriesLocationName";
 
-    private static final List<String> injuriesList = Arrays.asList("Fraqueza", "Convulsão (ataque)", "Soluço", "Febre", "Queimação", "Cansaço", "Coriza (nariz escorrendo)", "Náusea (vontade de vomitar)", "Tontura (sensação de desmaio)", "Diarreia (dor de barriga)", "Prisão de ventre (intestino preso)",
-            "Retenção urinária (dificuldade em urinar)", "Tremor", "Suor", "Dispneia (falta de ar )", "Espirros", "Tosse", "Flatulência (gazes)",
-            "Eructação (arroto)", "Sangramento", "Insônia (dificuldade em dormir)", "Sonolência", "Palpitação (arritmia)", "Surdez", "Tremedeira", "Cólica");
+    private static final List<String> injuriesList = Arrays.asList("Fraqueza", "Convulsão (ataque)", "Soluço", "Febre", "Queimação", "Cansaço", "Nariz escorrendo (Coriza)", "Vontade de vomitar (Náusea)", "Tontura (Sensação de desmaio)", "Dor de barriga (Diarreia)", "Intestino preso (Prisão de ventre)",
+            "Dificuldade em urinar (Retenção urinária)", "Tremor", "Suor", "Falta de ar (Dispneia)", "Espirros", "Tosse", "Gazes (Flatulência)",
+            "Arroto (Eructação)", "Sangramento", "Dificuldade em dormir (Insônia)", "Sonolência", "Palpitação (Arritmia)", "Surdez", "Tremedeira", "Cólica");
 
-    private static final List<String> injuriesListLocation = Arrays.asList("Dor", "Coceira", "Sensibilidade (dormência)", "Manchas", "Caroços", "Inchaço (edema)", "Câimbra");
+    private static final List<String> injuriesListLocation = Arrays.asList("Dor", "Coceira", "Dormência (Sensibilidade)", "Manchas", "Caroços", "Inchaço (Edema)", "Câimbra");
 
     public CreateDB(Context context){
         super(context, DB_NAME, null, VERSION);
